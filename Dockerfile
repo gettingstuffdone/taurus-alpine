@@ -41,7 +41,7 @@ RUN apk add --update --no-cache \
     pip install --upgrade bzt locustio selenium && \
     pip install --upgrade selenium && \
     rm -rf ~/.cache/pip && \
-    npm install -g mocha && npm cache clean && \
+    npm install -g mocha && \
     mkdir -p "$WORK_HOME" && \
     apk del --update --no-cache build-base musl-dev bzip2-dev openssl-dev \
           linux-headers libxml2-dev \
