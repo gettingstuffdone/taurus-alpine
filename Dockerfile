@@ -2,7 +2,7 @@ FROM alpine:3.9
 
 RUN apk --update --no-cache upgrade
 
-ENV WORK_HOME="/root/bzt" 
+ENV WORK_HOME="/root/bzt"
 
 COPY quick_test.yml /root/
 
@@ -36,13 +36,14 @@ RUN apk add --update --no-cache \
             libxml2-dev \
             libxslt-dev \
             linux-headers && \
-  pip install --upgrade pip setuptools && \
-  pip install bzt locustio selenium && \
-  pip install --upgrade selenium && \
-  npm install -g mocha && \
-  mkdir -p "$WORK_HOME" && \
-  rm -rf /var/cache/apk/* && \
-  bzt /root/quick_test.yml && \
-  apk del --update --no-cache build-base musl-dev bzip2-dev openssl-dev \
+    rm -rf /var/cache/apk/* && \
+    pip install --upgrade pip setuptools && \
+    pip install --upgrade bzt locustio selenium && \
+    pip install --upgrade selenium && \
+    rm -rf ~/.cache/pip && \
+    npm install -g mocha && npm cache clean && \
+    mkdir -p "$WORK_HOME" && \
+    apk del --update --no-cache build-base musl-dev bzip2-dev openssl-dev \
           linux-headers libxml2-dev \
-          fuse-dev icu-dev python-dev ruby-dev 
+          fuse-dev icu-dev python-dev ruby-dev
+
